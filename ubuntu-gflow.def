@@ -7,6 +7,9 @@ From: ubuntu:16.10
 %help
   This container runs GFlow software (see https://github.com/gflow/GFlow/, used fork here https://github.com/cysearch/singularity-GFlow)
 
+%files # inputs - this liine is for development & tests purposes inside the container image
+  /home/cycy/.old/GFlow/inputs.tar.gz /tmp/
+
 %post
   # Configures default locale
   echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
@@ -31,13 +34,17 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
   # Cleans up apt-get downloads
   rm -rf /var/lib/apt/lists/*
 
-  # Creates new user
-
   # Builds GFlow
-  cd /opt
-  git clone https://github.com/cysearch/GFlow
+  git clone https://github.com/cysearch/GFlow /opt/GFlow
   cd GFlow
   make
+  cd
+  mkdir -p /opt/GFlow/output
+
+  # Extracts input files
+  tar -xf /tmp/inputs.tar.gz
+  rm /tmp/inputs.tar.gz
+  mv /tmp/inputs /opt/GFlow/
 
 %runscript
   echo "welcome to singularity container running ubuntu-16.10 with GFlow"
