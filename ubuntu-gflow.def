@@ -34,7 +34,7 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
   # Creates new user
 
   # Builds GFlow
-  cd /home
+  cd /opt
   git clone https://github.com/cysearch/GFlow
   cd GFlow
   make
