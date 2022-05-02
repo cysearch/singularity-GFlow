@@ -1,56 +1,41 @@
-rcontroll Singularity container
+Singularity container for GFLow, Software for modeling circuit theory-based connectivity
 ================
-Salzet Guillaume
-February 28, 2022
+Cysearch
+May 2, 2022
 
-**R, rcontroll and calibration packages**
+**GFlow, and dependencies**
 
 Repository based on public template
-[`sylvainschmitt/singularity-template`](https://github.com/sylvainschmitt/singularity-template)
+[`gsalzet/singularity-template`](https://github.com/gsalzet/singularity-r-TROLL)
 
 This container includes:
 
--   `R` 4.1.2
--   `rcontroll` 0.1.0
--   `tidyverse` 1.3.1
--   `sf` 1.0-5
--   `sp` 1.4-6
--   `hetGP` 1.1.4
--   `coda` 0.19-4
--   `entropart` 1.6-8
--   `fitdistrplus` 1.1-6
--   `ForestGapR` 0.1.6
--   `lhs` 1.1.3
--   `KrigR` 0.1.2
--   `LoggingLab` 0.0.0.9003
+-   `GFlow` v0.1.7-alpha
+-   `openmpi-bin` 0.0
+-   `libhypre-dev` 0.0
+-   `petsc-dev` 0.0
 
 Singularity container based on the recipe:
 [`Singularity`](https://github.com/gsalzet/singularity-r-TROLL/blob/main/Singularity)
 
-Image singularity (V&gt;=3.6.4) is automatically test and built and
-pushed on the registry using
-[test.yml](https://github.com/gsalzet/singularity-template/blob/main/.github/workflows/test.yml)
-&
-[builder.yml](https://github.com/gsalzet/singularity-template/blob/main/.github/workflows/builder.yml)
-
 Initial bootstrap :
-[`docker://ubuntu:18:04`](https://hub.docker.com/_/ubuntu)
+[`docker://ubuntu:16:10`](https://hub.docker.com/layers/ubuntu/library/ubuntu/16.10/images/sha256-7d3f705d307c7c225398e04d4c4f8512f64eb8a65959a1fb4514dfde18a047e7?context=explore)
 
 **build**:
 
 ``` bash
-sudo singularity build Singularity TROLL_utilities.sif
+singularity build --fakeroot image.sif ubuntu-gflow.def
 ```
 
 **pull**:
 
 ``` bash
-singularity pull https://github.com/gsalzet/singularity-template/releases/download/0.0.2/gsalzet-singularity-r-TROLL.latest.sif
+singularity pull https://github.com/cysearch/singularity-GFlow/releases/download/0.1/singularity-GFlow.latest.sif
 ```
 
 **snakemake**:
 
 ``` python
-    singularity: 
-        "https://github.com/gsalzet/singularity-template/releases/download/0.0.2/gsalzet-singularity-r-TROLL.latest.sif"
+singularity:
+    "https://github.com/gsalzet/singularity-GFlow/releases/download/0.1/singularity-GFlow.latest.sif"
 ```

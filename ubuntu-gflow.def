@@ -1,0 +1,43 @@
+BootStrap: docker
+From: ubuntu:16.10
+
+%labels
+  Author Cysearch
+
+%help
+  This container runs GFlow software (see https://github.com/gflow/GFlow/, used fork here https://github.com/cysearch/singularity-GFlow)
+
+%post
+  # Configures default locale
+  echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+  locale-gen en_US.utf8
+  /usr/sbin/update-locale LANG=en_US.UTF-8
+  export LC_ALL=en_US.UTF-8
+  export LANG=en_US.UTF-8
+
+  # Configures old releases sources.list
+  echo "## old releases sources.list for ubuntu 16.10 'yakkety yak'
+deb http://old-releases.ubuntu.com/ubuntu/ yakkety main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ yakkety-updates main restricted universe multiverse
+deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted universe multiverse
+" > /etc/apt/sources.list
+
+  # Installs dependencies
+  apt-get update && apt-get install -y openmpi-bin libhypre-dev petsc-dev git make
+
+  # this line is for development & tests purposes inside the container image
+  apt-get install -y nano wget
+
+  # Cleans up apt-get downloads
+  rm -rf /var/lib/apt/lists/*
+
+  # Creates new user
+
+  # Builds GFlow
+  cd /home
+  git clone https://github.com/cysearch/GFlow
+  cd GFlow
+  make
+
+%runscript
+  echo "welcome to singularity container running ubuntu-16.10 with GFlow"
