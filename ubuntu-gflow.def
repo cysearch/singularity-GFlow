@@ -42,9 +42,8 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
   mkdir -p /opt/GFlow/output
 
   # Extracts input files
-  tar -xf /tmp/inputs.tar.gz
+  tar -xf /tmp/inputs.tar.gz -C /opt/GFlow/
   rm /tmp/inputs.tar.gz
-  mv /tmp/inputs /opt/GFlow/
 
 %runscript
   echo "welcome to singularity container running ubuntu-16.10 with GFlow"
