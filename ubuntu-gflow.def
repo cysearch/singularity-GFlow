@@ -7,8 +7,8 @@ From: ubuntu:16.10
 %help
   This container runs GFlow software (see https://github.com/gflow/GFlow/, used fork here https://github.com/cysearch/singularity-GFlow)
 
-%files # inputs - this liine is for development & tests purposes inside the container image
-  /home/cycy/.old/GFlow/inputs.tar.gz /tmp/
+%files # inputs - this line is for development & tests purposes
+  /home/cycy/.old/GFlow/inputs.tar.gz /root/inputs.tar.gz
 
 %post
   # Configures default locale
@@ -18,7 +18,7 @@ From: ubuntu:16.10
   export LC_ALL=en_US.UTF-8
   export LANG=en_US.UTF-8
 
-  # Configures old releases sources.list
+  # Configures old releases repositories for sources.list
   echo "## old releases sources.list for ubuntu 16.10 'yakkety yak'
 deb http://old-releases.ubuntu.com/ubuntu/ yakkety main restricted universe multiverse
 deb http://old-releases.ubuntu.com/ubuntu/ yakkety-updates main restricted universe multiverse
@@ -28,7 +28,7 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
   # Installs dependencies
   apt-get update && apt-get install -y openmpi-bin libhypre-dev petsc-dev git make
 
-  # this line is for development & tests purposes inside the container image
+  # this line is for development & tests purposes
   apt-get install -y nano wget
 
   # Cleans up apt-get downloads
@@ -36,14 +36,14 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
 
   # Builds GFlow
   git clone https://github.com/cysearch/GFlow /opt/GFlow
-  cd GFlow
+  cd /opt/GFlow
   make
   cd
   mkdir -p /opt/GFlow/output
 
   # Extracts input files
-  tar -xf /tmp/inputs.tar.gz -C /opt/GFlow/
-  rm /tmp/inputs.tar.gz
+  tar -xf /root/inputs.tar.gz -C /opt/GFlow/
+  rm /root/inputs.tar.gz
 
 %runscript
   echo "welcome to singularity container running ubuntu-16.10 with GFlow"
