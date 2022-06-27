@@ -31,6 +31,7 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
   # Cleans up apt-get downloads
   rm -rf /var/lib/apt/lists/*
 
+<<<<<<< HEAD
   # Creates new user 
 
   # Builds GFlow 
@@ -41,3 +42,13 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
 
 %runscript
   echo "welcome to singularity ubuntu-16.10 yakkery yak for GFlow"
+=======
+  # Builds GFlow
+  git clone https://github.com/cysearch/GFlow /opt/GFlow
+  cd /opt/GFlow
+  make
+  cd
+
+%runscript
+  echo "welcome to singularity container running ubuntu-16.10 with GFlow"
+>>>>>>> 5b5bc46c25d9764117aa38659c7a8cb13b009360
