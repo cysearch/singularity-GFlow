@@ -25,30 +25,14 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
   # Installs dependencies
   apt-get update && apt-get install -y openmpi-bin libhypre-dev petsc-dev git make
 
-  # this line is for development & tests purposes inside the container image
-  #  apt-get install -y nano wget 
-
   # Cleans up apt-get downloads
   rm -rf /var/lib/apt/lists/*
 
-<<<<<<< HEAD
-  # Creates new user 
-
   # Builds GFlow 
-  git clone https://github.com/gflow/GFlow
-  cd GFlow
-  sed -i "s@PETSC_DIR=/usr/local/Cellar/petsc/3.7.3/real@PETSC_DIR=/usr/lib/petscdir/3.7.3/x86_64-linux-gnu-real@g" Makefile
-  make
-
-%runscript
-  echo "welcome to singularity ubuntu-16.10 yakkery yak for GFlow"
-=======
-  # Builds GFlow
   git clone https://github.com/cysearch/GFlow /opt/GFlow
   cd /opt/GFlow
   make
   cd
 
 %runscript
-  echo "welcome to singularity container running ubuntu-16.10 with GFlow"
->>>>>>> 5b5bc46c25d9764117aa38659c7a8cb13b009360
+  echo "welcome to singularity container running ubuntu-16.10 yakkery yak for GFlow"
