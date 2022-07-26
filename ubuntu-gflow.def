@@ -23,7 +23,19 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
 " > /etc/apt/sources.list
 
   # Installs dependencies
-  apt-get update && apt-get install -y openmpi-bin libhypre-dev petsc-dev git make
+  apt-get update && apt-get install -y openmpi-bin libhypre-dev petsc-dev git make gdal-bin libgdal-dev python-pip
+
+  # gdal_calc
+  wget https://download.osgeo.org/gdal/2.1.1/gdal-2.1.1.tar.gz --no-check-certificate
+  mv gdal-2.1.1.tar.gz /usr/include/
+  cd /usr/include/
+  tar xzvf gdal-2.1.1.tar.gz
+  rm gdal-2.1.1.tar.gz
+  export PATH=$PATH:/usr/include/gdal-2.1.1/swig/python/scripts/
+
+  pip install numpy==1.12.1
+  pip install gdal==2.1.3
+  cd
 
   # Cleans up apt-get downloads
   rm -rf /var/lib/apt/lists/*
