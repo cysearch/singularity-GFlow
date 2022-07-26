@@ -71,3 +71,4 @@ jobs:
           tag_name: ${{ env.release_tag }}
         run: |
           hub release edit $(find . -type f -name "*.sif" -printf "-a %p ") -m "" "$tag_name" 
+
