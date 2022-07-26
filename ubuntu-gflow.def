@@ -22,9 +22,16 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-updates main restricted unive
 deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted universe multiverse
 " > /etc/apt/sources.list
 
-  # Installs dependencies
-  apt-get update && apt-get install -y openmpi-bin libhypre-dev petsc-dev git make gdal-bin libgdal-dev python-pip
+  # Installs dependencies for gdal
+  apt-get update && apt-get install -y gdal-bin libgdal-dev python-pip
 
+  pip install numpy==1.12.1
+  export PATH = $PATH:/usr/include/gdal
+  export CPLUS_INCLUDE_PATH=/usr/include/gdal && export C_INCLUDE_PATH=/usr/include/gdal && pip install gdal==2.1.3
+
+  # Installs dependencies for GFlow
+  apt-get update && apt-get install -y openmpi-bin libhypre-dev petsc-dev git make wget
+  
   # gdal_calc
   wget https://download.osgeo.org/gdal/2.1.1/gdal-2.1.1.tar.gz --no-check-certificate
   mv gdal-2.1.1.tar.gz /usr/include/
@@ -32,14 +39,10 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
   tar xzvf gdal-2.1.1.tar.gz
   rm gdal-2.1.1.tar.gz
   export PATH=$PATH:/usr/include/gdal-2.1.1/swig/python/scripts/
-
-  pip install numpy==1.12.1
-  pip install gdal==2.1.3
-  cd
-
+  
   # Cleans up apt-get downloads
   rm -rf /var/lib/apt/lists/*
-
+  
   # Builds GFlow 
   git clone https://github.com/cysearch/GFlow /opt/GFlow
   cd /opt/GFlow
