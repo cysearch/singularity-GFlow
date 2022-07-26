@@ -31,7 +31,7 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
   export CPLUS_INCLUDE_PATH=/usr/include/gdal && export C_INCLUDE_PATH=/usr/include/gdal && pip install gdal==2.1.3
 
   # Installs dependencies for GFlow
-  apt-get update && apt-get install -y openmpi-bin libhypre-dev petsc-dev git make wget
+  apt-get update && apt-get install -y openmpi-bin libhypre-dev petsc-dev git make wget bc
   
   # gdal_calc
   wget https://download.osgeo.org/gdal/2.1.1/gdal-2.1.1.tar.gz --no-check-certificate
