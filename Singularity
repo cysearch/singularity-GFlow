@@ -50,4 +50,9 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
 
 %environment
   export PATH=$PATH:/usr/include/gdal-2.1.1/swig/python/scripts
-  echo "welcome to singularity container running ubuntu-16.10 yakkery yak for GFlow"
+  echo "
+
+
+Welcome to singularity container running ubuntu-16.10 yakkery yak for GFlow !
+
+"
