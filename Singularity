@@ -40,13 +40,13 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
   
   apt-get update && apt-get install -y petsc-dev
   
-  #wget https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.8.4.tar.gz --no-check-certificate
+  #wget https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.7.3.tar.gz --no-check-certificate
   
-  #tar xf petsc-3.8.4.tar.gz
+  #tar xf petsc-3.7.3.tar.gz
   
-  #rm petsc-3.8.4.tar.gz
+  #rm petsc-3.7.3.tar.gz
   
-  #cd petsc-3.8.4
+  #cd petsc-3.7.3
   
   #ln -s /usr/bin/python3 /usr/bin/python && python ./configure -with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90
   
