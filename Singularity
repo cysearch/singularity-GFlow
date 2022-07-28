@@ -26,7 +26,7 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
   # https://github.com/precice/tutorials/issues/20
   # https://github.com/precice/precice/issues/526
   # Installs dependencies for GFlow, and bash utilities for calculations
-  apt-get update && apt-get install -y mpich libhypre-dev git make wget bc dos2unix python3
+  apt-get update && apt-get install -y mpich libhypre-dev git make wget bc dos2unix
   
   wget https://download.open-mpi.org/release/open-mpi/v2.1/openmpi-2.1.1.tar.gz --no-check-certificate
   
@@ -38,19 +38,21 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
   
   make
   
-  wget https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.8.4.tar.gz --no-check-certificate
+  apt-get update && apt-get install -y petsc-dev
   
-  tar xf petsc-3.8.4.tar.gz
+  #wget https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.8.4.tar.gz --no-check-certificate
   
-  rm petsc-3.8.4.tar.gz
+  #tar xf petsc-3.8.4.tar.gz
   
-  cd petsc-3.8.4
+  #rm petsc-3.8.4.tar.gz
   
-  ln -s /usr/bin/python3 /usr/bin/python && python2 ./configure -with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90
+  #cd petsc-3.8.4
   
-  make
+  #ln -s /usr/bin/python3 /usr/bin/python && python ./configure -with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90
   
-  cd
+  #make
+  
+  #cd
   
   # Installs dependencies for gdal
   apt-get update && apt-get install -y gdal-bin libgdal-dev python-pip
