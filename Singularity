@@ -26,36 +26,32 @@ deb http://old-releases.ubuntu.com/ubuntu/ yakkety-security main restricted univ
   # https://github.com/precice/tutorials/issues/20
   # https://github.com/precice/precice/issues/526
   # Installs dependencies for GFlow, and bash utilities for calculations
-  apt-get update && apt-get install -y mpich libhypre-dev git make wget bc dos2unix
+  apt-get update && apt-get install -y make wget bc dos2unix python build-essential gfortran
   
-  wget https://download.open-mpi.org/release/open-mpi/v2.1/openmpi-2.1.1.tar.gz --no-check-certificate
   
-  tar xf openmpi-2.1.1.tar.gz
   
-  cd openmpi-2.1.1
   
-  ./configure
+  wget https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.7.3.tar.gz --no-check-certificate
+  
+  tar xf petsc-3.7.3.tar.gz
+  
+  rm petsc-3.7.3.tar.gz
+  
+  wget https://ftp.mcs.anl.gov/pub/petsc/externalpackages/fblaslapack-3.4.2.tar.gz --no-check-certificate
+  
+  mv fblaslapack-3.4.2.tar.gz ./petsc-3.7.3
+  
+  cd petsc-3.7.3
+  
+  export PATH=$PATH:/usr/bin/env && ./configure --with-cc=gcc --with-cxx=g++ --with-fc=gfortran --download-mpich --download-fblaslapack=./fblaslapack-3.4.2.tar.gz
+make all check
   
   make
   
-  apt-get update && apt-get install -y petsc-dev
-  
-  #wget https://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-3.7.3.tar.gz --no-check-certificate
-  
-  #tar xf petsc-3.7.3.tar.gz
-  
-  #rm petsc-3.7.3.tar.gz
-  
-  #cd petsc-3.7.3
-  
-  #ln -s /usr/bin/python3 /usr/bin/python && python ./configure -with-cc=mpicc --with-cxx=mpicxx --with-fc=mpif90
-  
-  #make
-  
-  #cd
+  cd
   
   # Installs dependencies for gdal
-  apt-get update && apt-get install -y gdal-bin libgdal-dev python-pip
+  apt-get update && apt-get install -y  libhypre-dev git gdal-bin libgdal-dev python-pip
 
   pip install numpy==1.12.1
   export PATH=$PATH:/usr/include/gdal
