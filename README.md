@@ -1,41 +1,41 @@
-Template Singularity container
+Singularity container for GFLow, Software for modeling circuit theory-based connectivity
 ================
-Salzet Guillaume
-February 07, 2022
+Cysearch
+May 2, 2022
 
-**rcontroll package Template**
+**GFlow, and dependencies**
 
-Template is a set of utilities that allow to use rcontroll.
+Repository based on public template
+[`gsalzet/singularity-template`](https://github.com/gsalzet/singularity-r-TROLL)
 
-Template Version: X.X.X
+This container includes:
 
-\[URL\]
+-   `GFlow` v0.1.7-alpha
+-   `openmpi-bin` 0.0
+-   `libhypre-dev` 0.0
+-   `petsc-dev` 0.0
 
-Singularity container based on the recipe: Singularity
+Singularity container based on the recipe:
+[`Singularity`](https://github.com/gsalzet/singularity-r-TROLL/blob/main/Singularity)
 
-Package installation using Miniconda3 V4.7.12
-
-Image singularity (V\>=3.3) is automatically test and built and pushed
-on the registry using
-[test.yml](https://github.com/sylvainschmitt/singularity-template/blob/main/.github/workflows/test.yml)
-&
-[builder.yml](https://github.com/sylvainschmitt/singularity-template/blob/main/.github/workflows/builder.yml)
+Initial bootstrap :
+[`docker://ubuntu:16:10`](https://hub.docker.com/layers/ubuntu/library/ubuntu/16.10/images/sha256-7d3f705d307c7c225398e04d4c4f8512f64eb8a65959a1fb4514dfde18a047e7?context=explore)
 
 **build**:
 
 ``` bash
-sudo singularity build Singularity img.sif
+singularity build --fakeroot image.sif ubuntu-gflow.def
 ```
 
 **pull**:
 
 ``` bash
-singularity pull https://github.com/gsalzet/singularity-template/releases/download/0.0.1/gsalzet-singularity-template.latest.sif
+singularity pull https://github.com/cysearch/singularity-GFlow/releases/download/0.1/singularity-GFlow.latest.sif
 ```
 
 **snakemake**:
 
 ``` python
-    singularity: 
-        "https://github.com/gsalzet/singularity-template/releases/download/0.0.1/gsalzet-singularity-template.latest.sif"
+singularity:
+    "https://github.com/gsalzet/singularity-GFlow/releases/download/0.1/singularity-GFlow.latest.sif"
 ```

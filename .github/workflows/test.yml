@@ -3,9 +3,10 @@ name: singularity-deploy-test
 # run on creation of a release tag
 on:
   push: 
-    branches:
-      - "main"
+    branches: 
+      - "release"
       - "dev"
+      - "main"
 
 jobs:
   builder:
@@ -42,4 +43,3 @@ jobs:
       - name: Run Additional Tests
         run: |
           echo "Run any additional tests here."
-          

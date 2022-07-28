@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - "release"
+      
 
 jobs:
   release:
@@ -29,7 +30,7 @@ jobs:
         uses: actions/create-release@v1
         if: ${{ env.release_tag != env.latest_tag }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
           tag_name: ${{ env.release_tag }}
           release_name: Release ${{ env.release_tag }}
@@ -70,4 +71,3 @@ jobs:
           tag_name: ${{ env.release_tag }}
         run: |
           hub release edit $(find . -type f -name "*.sif" -printf "-a %p ") -m "" "$tag_name" 
-          
